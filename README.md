@@ -1,5 +1,7 @@
 # Vue Workshop
 
+This workshop teaches Vue.js basics by creating a real, functioning todo app.
+
 ## Initial Setup
 
 1. Run `npm install` to install dependencies.
