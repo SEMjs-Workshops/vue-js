@@ -1,24 +1,8 @@
-# vue-workshop
+# Vue Workshop
 
-## Project setup
-```
-npm install
-```
+## Initial Setup
 
-### Compiles and hot-reloads for development
-```
-npm run serve
-```
-
-### Compiles and minifies for production
-```
-npm run build
-```
-
-### Lints and fixes files
-```
-npm run lint
-```
-
-### Customize configuration
-See [Configuration Reference](https://cli.vuejs.org/config/).
+1. Run `npm install` to install dependencies.
+2. Run `npm run start:server` to start the REST API server.
+3. Run `npm run serve` to start the UI.
+4. Browse to http://localhost:8080

@@ -1,7 +1,13 @@
 <template>
   <div>
-    <Todo v-for="todo in todos" :key="todo.key" :data="todo" />
-    <TodoCreator v-on:create-todo="createTodo" />
+    <div v-if="isLoading">Loading...</div>
+
+    <div v-if="!isLoading && error !== null">Could not fetch data</div>
+
+    <div v-if="!isLoading && error === null">
+      <Todo v-for="todo in todos" :key="todo.key" :data="todo" />
+      <TodoCreator v-on:create-todo="createTodo" />
+    </div>
   </div>
 </template>
 
@@ -22,6 +28,8 @@ export default {
   },
   data() {
     return {
+      error: null,
+      isLoading: false,
       todos: []
     };
   },
@@ -35,9 +43,20 @@ export default {
       this.todos = [...this.todos, todo];
     },
     fetchData() {
-      axios.get("http://localhost:3000/todos").then(({ data }) => {
-        this.todos = data;
-      });
+      this.isLoading = true;
+
+      axios
+        .get("http://localhost:3000/todos")
+        .then(({ data }) => {
+          this.error = null;
+          this.todos = data;
+        })
+        .catch(err => {
+          this.error = err.toString();
+        })
+        .finally(() => {
+          this.isLoading = false;
+        });
     }
   }
 };
