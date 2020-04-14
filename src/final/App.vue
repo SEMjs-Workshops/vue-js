@@ -6,6 +6,7 @@
 </template>
 
 <script>
+import axios from "axios";
 import Todo from "./components/Todo.vue";
 import TodoCreator from "./components/TodoCreator.vue";
 
@@ -14,17 +15,29 @@ export default {
     Todo,
     TodoCreator
   },
+  created() {
+    /* This function will be called after the component is created. */
+
+    this.fetchData();
+  },
   data() {
     return {
-      todos: [
-        { id: 1, text: "Call mom", isComplete: false },
-        { id: 2, text: "Buy groceries", isComplete: true }
-      ]
+      todos: []
     };
   },
   methods: {
     createTodo(todo) {
+      /*
+      This method will be called by the `TodoCreator` component when a todo is 
+      created.
+      */
+
       this.todos = [...this.todos, todo];
+    },
+    fetchData() {
+      axios.get("http://localhost:3000/todos").then(({ data }) => {
+        this.todos = data;
+      });
     }
   }
 };
