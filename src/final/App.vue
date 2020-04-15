@@ -74,5 +74,7 @@ body {
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
   max-width: 400px;
+  margin: auto;
+  margin-top: 8px;
 }
 </style>
