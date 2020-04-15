@@ -1,11 +1,17 @@
 <template>
   <div class="app-wrapper">
+    <h1>Todo-aloo</h1>
+
     <div v-if="isLoading">Loading...</div>
 
     <div v-if="!isLoading && error !== null">Could not fetch data</div>
 
     <div v-if="!isLoading && error === null">
       <TodoCreator v-on:create-todo="createTodo" />
+
+      <div class="statistics">
+        {{ completedTodoCount }} / {{ todos.length }} todos compeleted
+      </div>
 
       <TodoList v-bind:todos="todos" />
     </div>
@@ -34,6 +40,11 @@ export default {
       isLoading: false,
       todos: []
     };
+  },
+  computed: {
+    completedTodoCount: function() {
+      return this.todos.filter(todo => todo.isComplete).length;
+    }
   },
   methods: {
     createTodo(todo) {
@@ -74,6 +85,12 @@ body {
   background-color: #f5f5f5;
 }
 
+h1 {
+  font-weight: 300;
+  margin-bottom: 8px;
+  text-align: center;
+}
+
 .app-wrapper {
   color: #4d4d4d;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -81,5 +98,9 @@ body {
   max-width: 400px;
   margin: auto;
   margin-top: 8px;
+}
+
+.statistics {
+  text-align: center;
 }
 </style>
