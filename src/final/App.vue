@@ -5,7 +5,7 @@
     <div v-if="!isLoading && error !== null">Could not fetch data</div>
 
     <div v-if="!isLoading && error === null">
-      <TodoCreator v-on:create-todo="createTodo" style="margin-bottom: 8px" />
+      <TodoCreator v-on:create-todo="createTodo" />
 
       <TodoList v-bind:todos="todos" />
     </div>
@@ -41,6 +41,11 @@ export default {
       This method will be called by the `TodoCreator` component when a todo is
       created.
       */
+
+      todo = {
+        ...todo,
+        id: this.todos.length + 1
+      };
 
       this.todos = [...this.todos, todo];
     },

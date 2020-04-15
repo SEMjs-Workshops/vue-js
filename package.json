@@ -1,7 +1,6 @@
 {
   "name": "vue-workshop",
   "version": "0.1.0",
-  "private": true,
   "scripts": {
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
@@ -12,6 +11,7 @@
     "axios": "^0.19.2",
     "core-js": "^3.6.4",
     "json-server": "^0.16.1",
+    "material-design-icons-iconfont": "^5.0.1",
     "vue": "^2.6.11",
     "vue-router": "^3.1.6",
     "vuetify": "^2.2.11"

@@ -1,7 +1,13 @@
 <template>
-  <div class="todo-list-wrapper">
-    <Todo v-for="todo in todos" :key="todo.key" :data="todo" />
-  </div>
+  <v-list two-line>
+    <v-divider v-if="todos.length > 0"></v-divider>
+
+    <template v-for="(todo, index) in todos">
+      <Todo v-bind:todo="todo" v-bind:key="todo.id" />
+
+      <v-divider v-bind:key="'div-' + index.toString()"></v-divider>
+    </template>
+  </v-list>
 </template>
 
 <script>
@@ -15,10 +21,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-.todo-list-wrapper {
-  border: 1px solid #4d4d4d;
-  border-bottom: 0;
-}
-</style>

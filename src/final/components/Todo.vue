@@ -1,29 +1,19 @@
 <template>
-  <div class="wrapper">
-    <div><input type="checkbox" v-model="data.isComplete" /></div>
-    <div>{{ data.text }}</div>
-  </div>
+  <v-list-item>
+    <v-list-item-content>
+      <v-list-item-title v-text="todo.title"></v-list-item-title>
+      <v-list-item-subtitle v-text="todo.text"></v-list-item-subtitle>
+    </v-list-item-content>
+
+    <v-list-item-action>
+      <v-checkbox v-model="todo.isComplete"></v-checkbox>
+    </v-list-item-action>
+  </v-list-item>
 </template>
 
 <script>
 export default {
   name: "Todo",
-  props: ["data"],
-  data() {
-    return {
-      style: {
-        color: "red"
-      }
-    };
-  }
+  props: ["todo"]
 };
 </script>
-
-<style scoped>
-.wrapper {
-  border-bottom: 1px solid #35495e;
-  display: flex;
-  padding: 14px;
-  font-size: 24px;
-}
-</style>
