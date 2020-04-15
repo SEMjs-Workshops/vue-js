@@ -6,7 +6,10 @@
     </v-list-item-content>
 
     <v-list-item-action>
-      <v-checkbox v-model="todo.isComplete"></v-checkbox>
+      <v-checkbox
+        v-model="todo.isComplete"
+        v-on:change="updateTodo"
+      ></v-checkbox>
     </v-list-item-action>
   </v-list-item>
 </template>
@@ -14,7 +17,12 @@
 <script>
 export default {
   name: "Todo",
-  props: ["todo"]
+  props: ["todo"],
+  methods: {
+    updateTodo() {
+      this.$emit("update-todo", this.todo);
+    }
+  }
 };
 </script>
 

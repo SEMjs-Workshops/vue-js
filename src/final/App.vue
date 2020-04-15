@@ -2,20 +2,18 @@
   <div class="app-wrapper">
     <h1>Todo-aloo</h1>
 
-    <div v-if="isLoading" class="app-loading">Loading...</div>
-
     <div v-if="!isLoading && error !== null" class="app-error">
       Could not fetch data
     </div>
 
-    <div v-if="!isLoading && error === null">
+    <div v-if="error === null">
       <TodoCreator v-on:create-todo="createTodo" />
 
       <div class="app-statistics">
         {{ completedTodoCount }} / {{ todos.length }} todos compeleted
       </div>
 
-      <TodoList v-bind:todos="todos" />
+      <TodoList v-bind:todos="todos" v-on:update-todo="updateTodo" />
     </div>
   </div>
 </template>
@@ -51,8 +49,8 @@ export default {
   methods: {
     createTodo(todo) {
       /*
-      This method will be called by the `TodoCreator` component when a todo is
-      created.
+      This method will be called when the `TodoCreator` component creates a new
+      todo.
       */
 
       axios.post("http://localhost:3000/todos", todo).then(() => {
@@ -74,6 +72,18 @@ export default {
         .finally(() => {
           this.isLoading = false;
         });
+    },
+    updateTodo(todo) {
+      /*
+      This method will be called when the `Todo` component updates a todo. The
+      event will go thru the `TodoList` component. In other words, the event
+      flow is `Todo` -> `TodoList` -> `updateTodo`.
+      */
+
+      console.log(todo);
+      axios.patch(`http://localhost:3000/todos/${todo.id}`, todo).then(() => {
+        this.fetchData();
+      });
     }
   }
 };

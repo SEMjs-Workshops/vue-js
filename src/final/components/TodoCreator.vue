@@ -1,6 +1,5 @@
 <template>
   <div class="todo-creator-wrapper">
-    <!-- <input class="todo-creator-text" v-model="todoText" type="text" /> -->
     <v-text-field
       v-model="todoText"
       @keypress.enter="createTodo()"
@@ -8,9 +7,6 @@
       label="New Task"
       outlined
     ></v-text-field>
-    <!-- <v-btn v-on:click="createTodo()" color="primary" depressed small
-      >Create</v-btn
-    > -->
   </div>
 </template>
 
@@ -29,7 +25,7 @@ export default {
           isComplete: false
         });
 
-        this.todoText = ""
+        this.todoText = "";
       }
     }
   }
@@ -37,13 +33,6 @@ export default {
 </script>
 
 <style scoped>
-.todo-creator-submit {
-  /* background-color: #ffffff;
-  border: 0;
-  font-size: 18px;
-  padding: 8px; */
-}
-
 .todo-creator-text {
   flex-grow: 1;
 }
