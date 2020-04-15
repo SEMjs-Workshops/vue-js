@@ -2,14 +2,16 @@
   <div class="app-wrapper">
     <h1>Todo-aloo</h1>
 
-    <div v-if="isLoading">Loading...</div>
+    <div v-if="isLoading" class="app-loading">Loading...</div>
 
-    <div v-if="!isLoading && error !== null">Could not fetch data</div>
+    <div v-if="!isLoading && error !== null" class="app-error">
+      Could not fetch data
+    </div>
 
     <div v-if="!isLoading && error === null">
       <TodoCreator v-on:create-todo="createTodo" />
 
-      <div class="statistics">
+      <div class="app-statistics">
         {{ completedTodoCount }} / {{ todos.length }} todos compeleted
       </div>
 
@@ -53,12 +55,9 @@ export default {
       created.
       */
 
-      todo = {
-        ...todo,
-        id: this.todos.length + 1
-      };
-
-      this.todos = [...this.todos, todo];
+      axios.post("http://localhost:3000/todos", todo).then(() => {
+        this.fetchData();
+      });
     },
     fetchData() {
       this.isLoading = true;
@@ -91,6 +90,18 @@ h1 {
   text-align: center;
 }
 
+.app-error {
+  text-align: center;
+}
+
+.app-loading {
+  text-align: center;
+}
+
+.app-statistics {
+  text-align: center;
+}
+
 .app-wrapper {
   color: #4d4d4d;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
@@ -98,9 +109,5 @@ h1 {
   max-width: 400px;
   margin: auto;
   margin-top: 8px;
-}
-
-.statistics {
-  text-align: center;
 }
 </style>
