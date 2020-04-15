@@ -1,5 +1,5 @@
 <template>
-  <div class="item">
+  <div class="wrapper">
     <div><input type="checkbox" v-model="data.isComplete" /></div>
     <div>{{ data.text }}</div>
   </div>
@@ -20,7 +20,10 @@ export default {
 </script>
 
 <style scoped>
-.item {
+.wrapper {
+  border-bottom: 1px solid #35495e;
   display: flex;
+  padding: 14px;
+  font-size: 24px;
 }
 </style>
