@@ -1,14 +1,17 @@
 <template>
-  <v-list-item v-bind:class="{ 'completed-todo': todo.isComplete }">
-    <v-list-item-content class="todo-text">
-      <v-list-item-title v-text="todo.title"></v-list-item-title>
-      <v-list-item-subtitle v-text="todo.text"></v-list-item-subtitle>
+  <v-list-item>
+    <v-list-item-content>
+      <v-list-item-title
+        v-text="todo.text"
+        v-bind:class="{ 'line-through': todo.isComplete }"
+      ></v-list-item-title>
     </v-list-item-content>
 
     <v-list-item-action>
       <v-checkbox
         v-model="todo.isComplete"
         v-on:change="updateTodo"
+        data-testid="is-complete"
       ></v-checkbox>
     </v-list-item-action>
   </v-list-item>
@@ -21,13 +24,13 @@ export default {
   methods: {
     updateTodo() {
       this.$emit("update-todo", this.todo);
-    }
-  }
+    },
+  },
 };
 </script>
 
 <style scoped>
-.completed-todo .todo-text {
+.line-through {
   text-decoration: line-through;
 }
 
