@@ -14,7 +14,7 @@
 export default {
   data() {
     return {
-      todoText: ""
+      todoText: "",
     };
   },
   methods: {
@@ -22,13 +22,13 @@ export default {
       if (this.todoText.length > 0) {
         this.$emit("create-todo", {
           text: this.todoText,
-          isComplete: false
+          isComplete: false,
         });
 
         this.todoText = "";
       }
-    }
-  }
+    },
+  },
 };
 </script>
 
