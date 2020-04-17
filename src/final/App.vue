@@ -1,21 +1,23 @@
 <template>
-  <div class="app-wrapper">
-    <h1>Todo-aloo</h1>
+  <v-app>
+    <div class="app-wrapper">
+      <h1>Todo-aloo</h1>
 
-    <div v-if="!isLoading && error !== null" class="app-error">
-      Could not fetch data
-    </div>
-
-    <div v-if="error === null">
-      <TodoCreator v-on:create-todo="createTodo" />
-
-      <div class="app-statistics">
-        {{ completedTodoCount }} / {{ todos.length }} todos compeleted
+      <div v-if="!isLoading && error !== null" class="app-error">
+        Could not fetch data
       </div>
 
-      <TodoList v-bind:todos="todos" v-on:update-todo="updateTodo" />
+      <div v-if="error === null">
+        <TodoCreator v-on:create-todo="createTodo" />
+
+        <div class="app-statistics">
+          {{ completedTodoCount }} / {{ todos.length }} todos compeleted
+        </div>
+
+        <TodoList v-bind:todos="todos" v-on:update-todo="updateTodo" />
+      </div>
     </div>
-  </div>
+  </v-app>
 </template>
 
 <script>
@@ -27,7 +29,7 @@ import TodoList from "./components/TodoList.vue";
 export default {
   components: {
     TodoCreator,
-    TodoList
+    TodoList,
   },
   created() {
     /* This function will be called after the component is created. */
@@ -38,13 +40,13 @@ export default {
     return {
       error: null,
       isLoading: false,
-      todos: []
+      todos: [],
     };
   },
   computed: {
     completedTodoCount: function() {
-      return this.todos.filter(todo => todo.isComplete).length;
-    }
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
   },
   methods: {
     createTodo(todo) {
@@ -66,7 +68,7 @@ export default {
           this.error = null;
           this.todos = data;
         })
-        .catch(err => {
+        .catch((err) => {
           this.error = err.toString();
         })
         .finally(() => {
@@ -84,8 +86,8 @@ export default {
       axios.patch(`http://localhost:3000/todos/${todo.id}`, todo).then(() => {
         this.fetchData();
       });
-    }
-  }
+    },
+  },
 };
 </script>
 
@@ -116,8 +118,8 @@ h1 {
   color: #4d4d4d;
   font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
   font-weight: 300;
-  max-width: 400px;
   margin: auto;
   margin-top: 8px;
+  width: 400px;
 }
 </style>
