@@ -33,11 +33,5 @@ export default {
 </script>
 
 <style scoped>
-.todo-creator-text {
-  flex-grow: 1;
-}
-
-.todo-creator-wrapper {
-  display: flex;
-}
+@import "../../../static/TodoCreator.css";
 </style>

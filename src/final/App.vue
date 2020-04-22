@@ -92,34 +92,5 @@ export default {
 </script>
 
 <style>
-body {
-  background-color: #f5f5f5;
-}
-
-h1 {
-  font-weight: 300;
-  margin-bottom: 8px;
-  text-align: center;
-}
-
-.app-error {
-  text-align: center;
-}
-
-.app-loading {
-  text-align: center;
-}
-
-.app-statistics {
-  text-align: center;
-}
-
-.app-wrapper {
-  color: #4d4d4d;
-  font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
-  font-weight: 300;
-  margin: auto;
-  margin-top: 8px;
-  width: 400px;
-}
+@import "../../static/App.css";
 </style>

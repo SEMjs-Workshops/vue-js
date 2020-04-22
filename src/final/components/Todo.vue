@@ -30,11 +30,5 @@ export default {
 </script>
 
 <style scoped>
-.line-through {
-  text-decoration: line-through;
-}
-
-.completed-todo {
-  background: rgba(0, 0, 0, 0.08);
-}
+@import "../../../static/Todo.css";
 </style>
