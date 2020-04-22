@@ -6,7 +6,7 @@ This workshop teaches Vue.js basics by creating a real, functioning todo app.
 
 1. Run `npm install` to install dependencies.
 2. Run `npm run start:server` to start the REST API server.
-3. In a new terminal, run `npm run serve src/final/mainjs` to start the completed app we'll be building.
+3. In a new terminal, run `npm run serve src/final/main.js` to start the completed app we'll be building.
 4. Browse to http://localhost:8080. You should see the todo app!
 
 ## Topics Covered
