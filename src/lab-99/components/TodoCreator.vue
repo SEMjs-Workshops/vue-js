@@ -33,5 +33,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../../../static/TodoCreator.css";
+@import "../../static/TodoCreator.css";
 </style>
