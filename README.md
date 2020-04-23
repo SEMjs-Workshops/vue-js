@@ -8,30 +8,19 @@ This workshop teaches Vue.js basics by creating a real, functioning todo app.
 2. Run `npm run serve:final` to start completed app we'll be building.
 3. Browse to http://localhost:8080. You should see the todo app!
 4. Stop the `serve:final` script.
+5. When you're ready to start the first lab, click the link in the [Labs](#labs) section.
 
-## Topics Covered
+## Labs
 
-- Single-file components
-  - Keeping a component's HTML, JavaScript, and CSS in one file.
-- Directives
-  - Add dynamic behavior to DOM elements.
-  - Example: using `v-if` for conditional rendering.
-- Props
-  - Data that's passed from a parent component to a child component.
-- Data
-  - Data that's managed by the component.
-- Methods
-  - Component-specific functions.
-- Emitting events
-  - Passing data from a child component to its parent.
-- Communicating with a REST server.
-  - We'll have a UI data that's kept in-sync with the server using `GET`, `POST`, and `PATCH` requests.
-- The Vuetify UI library.
-  - Components that look beautiful out-of-the-box.
-
-## The Workshop
-
-When you're ready to start the first lab, open [src/lab-1/README.md](src/lab-1/README.md).
+1. [Template syntax](src/lab-template-syntax/README.md)
+2. Attribute binding
+3. Class binding
+4. Conditional rendering
+5. List rendering
+6. Form input binding
+7. Event handling
+8. Components
+9. [Backend API](src/lab-backend-api/README.md)
 
 ## Repo Structure
 
@@ -61,32 +50,32 @@ npm run start:server -- --delay 2000
 
 ### Serving Vue Apps
 
-To serve a specific app, run the following command. Make sure you replace `<app>` with an app name (e.g. `lab-1`).
+To serve a specific app, run the following command. Make sure you replace `<app>` with an app name (e.g. `lab-backend-api`).
 
 ```
 npm run serve src/<app>/main.js
 ```
 
-For example, the following command will start `lab-1`:
+For example, the following command will start `lab-backend-api`:
 
 ```
-npm run serve src/lab-1/main.js
+npm run serve src/lab-backend-api/main.js
 ```
 
 Browse to http://localhost:8080 to see the app.
 
 ### Testing Vue Apps
 
-To run the tests for a specific app, run the following command. Make sure you replace `<app>` with an app name (e.g. `lab-1`).
+To run the tests for a specific app, run the following command. Make sure you replace `<app>` with an app name (e.g. `lab-backend-api`).
 
 ```
 npm test -- src/<app> --watch
 ```
 
-For example, the following command will run the tests for `lab-1`:
+For example, the following command will run the tests for `lab-backend-api`:
 
 ```
-npm test -- src/lab-1 --watch
+npm test -- src/lab-backend-api --watch
 ```
 
 Note that watch mode is enabled. The test runner (Jest) will automatically rerun the tests when you make changes.
