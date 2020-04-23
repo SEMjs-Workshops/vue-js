@@ -1,3 +1,11 @@
 <template>
-  <div>Lab 1</div>
+  <div>This app says {{ message }}</div>
 </template>
+
+<script>
+export default {
+  data() {
+    return {};
+  },
+};
+</script>

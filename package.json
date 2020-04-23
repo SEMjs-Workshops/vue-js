@@ -7,7 +7,7 @@
     "serve": "vue-cli-service serve",
     "serve:final": "concurrently --raw \"npm run start:server\" \"npm run serve src/final/main.js\"",
     "start:server": "json-server db.js",
-    "test": "jest"
+    "test": "jest --watch"
   },
   "dependencies": {
     "axios": "^0.19.2",
