@@ -1,12 +1,16 @@
 # Template Syntax Lab
 
-## Getting Started
+## Pre-Lab Setup
 
 1. Start the UI.
    - Run `npm run serve src/lab-template-syntax/main.js`
 2. In a new terminal, start the test runner.
    - Run `npm test lab-template-syntax`
    - You'll see test failures. This is expected, since completion of this lab will makes the tests pass.
+
+## Post-Lab Teardown
+
+1. Stop the UI and test processes.
 
 ## Instructions
 
