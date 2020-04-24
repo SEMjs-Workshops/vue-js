@@ -1,5 +1,7 @@
 <template>
-  <div>This app says {{ message }}</div>
+  <div>
+    <div>This app says {{ message }}</div>
+  </div>
 </template>
 
 <script>
