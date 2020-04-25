@@ -24,7 +24,7 @@ Using Vue, we can interpolate dynamic data into our HTML. This is accomplished u
 
 In the above code, Vue will recognize that `{{ dynamicDataHere }}` should be replaced using dynamic data.
 
-> Mustache syntax isn't new. It's a pattern that's existed for a long time, and is common in server-side frameworks.
+> Mustache syntax isn't new. It's a pattern that's existed for a long time, and is common in server-side frameworks. Mustache syntax gets its name from the visual similarity between a curly brace (`{`) and a mustache.
 
 ### Text
 
