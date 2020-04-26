@@ -12,7 +12,7 @@ import Component from "./App.vue";
   hardcoded in the template or computed property.
 */
 
-describe("message", () => {
+describe("Text", () => {
   test("renders message correctly", async () => {
     const { getByText } = render(Component);
 
@@ -34,7 +34,7 @@ describe("message", () => {
   });
 });
 
-describe("reversed message", () => {
+describe("JavaScript Expressions", () => {
   test("renders reversed message correctly", () => {
     const { getByText } = render(Component);
 
@@ -56,7 +56,7 @@ describe("reversed message", () => {
   });
 });
 
-describe("computed property", () => {
+describe("Computed Properties", () => {
   test("reversedMessage computed property is correct", () => {
     const localThis = { message: "hello" };
 

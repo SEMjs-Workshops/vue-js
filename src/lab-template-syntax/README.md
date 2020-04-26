@@ -53,7 +53,7 @@ In the previous section, we interpolated a string. But Vue supports full JavaScr
 Let's give it a try. Below the `<div>` from the last section, add the following code:
 
 ```hbs
-<div>{{ message.split('').reverse().join('') }}<div>
+<div>{{ message.split('').reverse().join('') }}</div>
 ```
 
 You should see the string "olleh" (the `message` backwards) on the page.
@@ -69,7 +69,7 @@ Which of these templates is easier to quickly understand?
 Without computed properties:
 
 ```hbs
-<div>{{ message.split('').reverse().join('') }}<div>
+<div>{{ message.split('').reverse().join('') }}</div>
 ```
 
 With computed properties:
@@ -83,7 +83,9 @@ To add a computed property to our component, we'll need to add a `computed` func
 ```js
 export default {
   computed: {
-    reversedMessage: function() {},
+    reversedMessage: function() {
+      return "";
+    },
   },
   data() {
     return {
@@ -95,12 +97,7 @@ export default {
 
 In your template, you'll be using `reversedMessage` as if it's a normal variable. But under the hood, `reversedMessage` is actually a function that Vue will automatically call. Computed properties must be functions because they need to dynamically compute a value. We could update `message` at any time, so `reversedMessage` needs to have the updated `message` value.
 
-Let's use the computed value in the template: change `{{ message.split('').reverse().join('') }}` to `{{ reversedMessage }}`. You'll notice that you now have 2 failing tests:
-
-- `renders reversed message correctly`
-- `reversedMessage computed property is correct`
-
-To make these tests pass, the `reverseMessage` computed property will need to return the correct value.
+Let's use the computed value in the template: change `{{ message.split('').reverse().join('') }}` to `{{ reversedMessage }}`. You'll notice that the tests from the previous section are now failing! To make the current and previous sections' tests pass, the `reverseMessage` computed property will need to return the correct value.
 
 What should `reverseMessage` return? Let's try using the `message.split('').reverse().join('')` expression we had in our template. After saving your file, take a look at the UI terminal process. You should see the following error:
 
