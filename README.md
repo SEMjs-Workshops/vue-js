@@ -13,9 +13,9 @@ This workshop teaches Vue.js basics by creating a real, functioning todo app.
 ## Labs
 
 1. [Template syntax](src/lab-template-syntax/README.md)
-2. Attribute binding
-3. Class binding
-4. Conditional rendering
+2. [Conditional rendering](src/lab-conditional-rendering/README.md)
+3. Attribute binding
+4. Class binding
 5. List rendering
 6. Form input binding
 7. Event handling
