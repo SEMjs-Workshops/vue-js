@@ -13,59 +13,73 @@ import Component from "./App.vue";
 */
 
 describe("Text", () => {
-  test("renders message correctly", async () => {
+  test("renders app name correctly", async () => {
     const { getByText } = render(Component);
 
-    getByText("This app says hello");
+    getByText("Todo-aloo");
   });
 
-  test("renders message correctly when data.message is different", async () => {
+  test("renders app name correctly when appName is different", async () => {
     const LocalComponent = cloneDeep(Component);
+    const data = LocalComponent.data();
 
     LocalComponent.data = function() {
       return {
-        message: "foobar",
+        ...data,
+        appName: "foobar",
       };
     };
 
     const { getByText } = render(LocalComponent);
 
-    getByText("This app says foobar");
+    getByText("foobar");
   });
 });
 
 describe("JavaScript Expressions", () => {
-  test("renders reversed message correctly", () => {
+  test("renders completed todos message correctly", () => {
     const { getByText } = render(Component);
 
-    getByText("hello backwards is olleh");
+    getByText("1 todos completed");
   });
 
-  test("renders reversed message correctly when data.message is different", () => {
+  test("renders completed todos message correctly when todos is different", () => {
     const LocalComponent = cloneDeep(Component);
+    const data = LocalComponent.data();
 
     LocalComponent.data = function() {
       return {
-        message: "foobar",
+        ...data,
+        todos: [
+          { isComplete: false },
+          { isComplete: true },
+          { isComplete: true },
+        ],
       };
     };
 
     const { getByText } = render(LocalComponent);
 
-    getByText("foobar backwards is raboof");
+    getByText("2 todos completed");
   });
 });
 
 describe("Computed Properties", () => {
-  test("reversedMessage computed property is correct", () => {
-    const localThis = { message: "hello" };
+  test("completedTodosCount computed property is correct", () => {
+    const localThis = Component.data();
 
-    expect(Component.computed.reversedMessage.call(localThis)).toBe("olleh");
+    expect(Component.computed.completedTodosCount.call(localThis)).toBe(1);
   });
 
-  test("reversedMessage computed property is correct when data.message is different", () => {
-    const localThis = { message: "foobar" };
+  test("completedTodosCount computed property is correct when todos is different", () => {
+    const localThis = {
+      todos: [
+        { isComplete: false },
+        { isComplete: true },
+        { isComplete: true },
+      ],
+    };
 
-    expect(Component.computed.reversedMessage.call(localThis)).toBe("raboof");
+    expect(Component.computed.completedTodosCount.call(localThis)).toBe(2);
   });
 });

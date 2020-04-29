@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div>This app says {{ message }}</div>
+    <div>{{ appName }}</div>
   </div>
 </template>
 
@@ -8,7 +8,11 @@
 export default {
   data() {
     return {
-      message: "",
+      appName: "app name here",
+      todos: [
+        { isComplete: false, text: "Call mom" },
+        { isComplete: true, text: "Buy groceries" },
+      ],
     };
   },
 };

@@ -6,7 +6,7 @@
    - Run `npm run serve src/lab-template-syntax/main.js`
 2. In a new terminal, start the test runner.
    - Run `npm test lab-template-syntax`
-   - You'll see test failures. This is expected, since completion of this lab will makes the tests pass.
+   - You'll see test failures, which is expected. All of the tests will be passing after you complete this lab.
 
 ## Post-Lab Teardown
 
@@ -19,63 +19,62 @@
 Using Vue, we can interpolate dynamic data into our HTML. This is accomplished using "mustache" syntax:
 
 ```hbs
-<div>{{ dynamicDataHere }}</div>
+<div>{{ dynamicData }}</div>
 ```
 
-In the above code, Vue will recognize that `{{ dynamicDataHere }}` should be replaced using dynamic data.
+In the above code, Vue will recognize that `{{ dynamicData }}` should be replaced using the variable `dynamicData`.
 
 > Mustache syntax isn't new. It's a pattern that's existed for a long time, and is common in server-side frameworks. Mustache syntax gets its name from the visual similarity between a curly brace (`{`) and a mustache.
 
 ### Text
 
-Open the UI by browsing to http://localhost:8080. You should see "This app says" on the page, with nothing afterward.
+Open the UI by browsing to http://localhost:8080. You should see "app name here" on the page.
 
-Next, open `App.vue`. You'll see "This app says {{ message }}". This is because Vue doesn't have anything to replace `{{ message }}` with!
+Next, open `App.vue`. You'll see `<div>{{ appName }}</div>` in the template, and `appName: "app name here"` in the data. Vue is dynamically inserting `appName` for us.
 
-Take a look at the `<script>` block. You'll see a `data` function, which returns an empty object. Vue will use that object to interpolate data. Replace the empty object with `{ message: "yo" }`.
-
-If you go back to your browser, you'll see "This app says yo". Vue is interpolating our data into the HTML!
-
-The `renders message correctly` test is currently failing, because it expects the page to say "This app says hello!". Change the data object to make the test pass.
+If you look at your test runner, you'll see a failing test for this section. The `renders app name correctly` test is expecting "Todo-aloo" (the real app name) to appear on the page. Change the `appName` data to make this test pass.
 
 ### JavaScript Expressions
 
 In the previous section, we interpolated a string. But Vue supports full JavaScript expressions! All of the following are valid interpolations:
 
 ```hbs
-{{ number + 1 }}
+<div>{{ 1 + 2 }}</div>
 
-{{ ok ? 'YES' : 'NO' }}
+<div>{{ appName ? 'YES' : 'NO' }}</div>
 
-{{ message.split('').reverse().join('') }}
+<div>{{ todos.filter((todo) => todo.isComplete).length }}</div>
 ```
 
-Let's give it a try. Below the `<div>` from the last section, add the following code:
+Let's give it a try. Change your template to match the following:
 
 ```hbs
-<div>{{ message.split('').reverse().join('') }}</div>
+<div>
+  <div>{{ appName }}</div>
+  <div>{{ todos.filter((todo) => todo.isComplete).length }}</div>
+</div>
 ```
 
-You should see the string "olleh" (the `message` backwards) on the page.
+You should see the string "1" in your browser. This is the number of completed todos.
 
-The `renders reversed message correctly` test is currently failing, because it expects the page to say "hello backwards is elloh". Change the `<template>` to make the test pass.
+The tests for this section are failing, because they expect the page to say "1 todos completed". Change your template to make the tests pass.
 
 ### Computed Properties
 
-We've seen that Vue's template syntax supports complex JavaScript expressions. However, it's bad practice to put complex JavaScript expressions in your view (i.e. your `<template>`).
+We've seen that Vue's template syntax supports complex JavaScript expressions. However, it's bad practice to put complex JavaScript expressions in the view (i.e. the template).
 
-Which of these templates is easier to quickly understand?
+Which of the following templates is easier to quickly understand?
 
-Without computed properties:
+This (without computed properties):
 
 ```hbs
-<div>{{ message.split('').reverse().join('') }}</div>
+<div>{{ todos.filter((todo) => todo.isComplete).length }} todos completed</div>
 ```
 
-With computed properties:
+Or this (with computed properties):
 
 ```hbs
-<div>{{ reversedMessage }}<div>
+<div>{{ completedTodosCount }} todos completed</div>
 ```
 
 To add a computed property to our component, we'll need to add a `computed` function like this:
@@ -83,33 +82,39 @@ To add a computed property to our component, we'll need to add a `computed` func
 ```js
 export default {
   computed: {
-    reversedMessage: function() {
-      return "";
+    completedTodosCount: function() {
+      return 0;
     },
   },
   data() {
     return {
-      message: "hello",
+      appName: "Todo-aloo",
+      todos: [
+        { isComplete: false, text: "Call mom" },
+        { isComplete: true, text: "Buy groceries" },
+      ],
     };
   },
 };
 ```
 
-In your template, you'll be using `reversedMessage` as if it's a normal variable. But under the hood, `reversedMessage` is actually a function that Vue will automatically call. Computed properties must be functions because they need to dynamically compute a value. We could update `message` at any time, so `reversedMessage` needs to have the updated `message` value.
+In your template, you can use `completedTodosCount` as if it's a normal variable. But under the hood, `completedTodosCount` is actually a function that Vue will automatically call.
 
-Let's use the computed value in the template: change `{{ message.split('').reverse().join('') }}` to `{{ reversedMessage }}`. You'll notice that the tests from the previous section are now failing! To make the current and previous sections' tests pass, the `reverseMessage` computed property will need to return the correct value.
+> Computed properties must be functions because they need to dynamically compute a value. Component data could be updated at any time, so computed properties need to consume component data each time they're used.
 
-What should `reverseMessage` return? Let's try using the `message.split('').reverse().join('')` expression we had in our template. After saving your file, take a look at the UI terminal process. You should see the following error:
+Let's use the computed value in the template: change `{{ todos.filter((todo) => todo.isComplete).length }}` to `{{ completedTodosCount }}`. You'll notice that the tests from the previous section are now failing! To make the current and previous sections' tests pass, the `completedTodosCount` computed property will need to return the correct value.
+
+What should `completedTodosCount` return? Let's try using the `todos.filter((todo) => todo.isComplete).length` expression we had in our template. After saving your file, take a look at the UI terminal process. You should see the following error:
 
 ```
-error  'message' is not defined  no-undef
+error  'todos' is not defined  no-undef
 ```
 
-This error is happening because `message` isn't a global variable. Instead, it's on the component instance itself. So you'll need to access it with `this.message` instead of `message`.
+This error is happening because `todos` isn't a global variable. Instead, it's on the component instance itself. So you'll need to access it with `this.todos` instead of `todos`.
 
-> In JavaScript, the definition `this` is surpringly complicated. But in a Vue computed property, `this` represents the component instance. The component you're creating can be thought of as a "class" which will be "instantiated" when it's actually created.
+> In JavaScript, the definition `this` is surpringly complicated. But in a Vue computed property, `this` represents the component instance. The component you're creating can be thought of as a "class" which will be "instantiated" when it's actually rendered on the page.
 
-All of your tests should now pass. You're done with the lab!
+All of your tests should now pass. You're done with the lab! Don't forget to perform the [post-lab teardown](#post-lab-teardown)
 
 ## Resources
 
