@@ -1,5 +1,5 @@
 import { render } from "@testing-library/vue";
-// import cloneDeep from "lodash/cloneDeep";
+import cloneDeep from "lodash/cloneDeep";
 
 import Component from "./App.vue";
 
@@ -13,24 +13,47 @@ import Component from "./App.vue";
 */
 
 describe("The `v-if` Directive", () => {
-  test("visible text is visible", async () => {
+  test("not done message is visible", async () => {
     const { getByText } = render(Component);
 
-    getByText("I should be visible");
+    getByText("Not done...");
   });
 
-  test("not visible text is not visible", async () => {
+  test("done message is not visible", async () => {
     const { queryByText } = render(Component);
 
-    expect(queryByText("I should not be visible")).toBeNull();
+    expect(queryByText("All done!")).toBeNull();
   });
-});
 
-describe("The `v-else` Directive", () => {
-  test("renders correct stock text", async () => {
-    const { getByText, queryByText } = render(Component);
+  test("not done message is not visible when all todos are complete", async () => {
+    const LocalComponent = cloneDeep(Component);
+    const data = LocalComponent.data();
 
-    getByText("Out of stock");
-    expect(queryByText("In stock")).toBeNull();
+    LocalComponent.data = function() {
+      return {
+        ...data,
+        todos: [{ isComplete: true }],
+      };
+    };
+
+    const { queryByText } = render(LocalComponent);
+
+    expect(queryByText("Not done...")).toBeNull();
+  });
+
+  test("done message is visible when all todos are complete", async () => {
+    const LocalComponent = cloneDeep(Component);
+    const data = LocalComponent.data();
+
+    LocalComponent.data = function() {
+      return {
+        ...data,
+        todos: [{ isComplete: true }],
+      };
+    };
+
+    const { getByText } = render(LocalComponent);
+
+    getByText("All done!");
   });
 });

@@ -114,7 +114,7 @@ This error is happening because `todos` isn't a global variable. Instead, it's o
 
 > In JavaScript, the definition `this` is surpringly complicated. But in a Vue computed property, `this` represents the component instance. The component you're creating can be thought of as a "class" which will be "instantiated" when it's actually rendered on the page.
 
-All of your tests should now pass. You're done with the lab! Don't forget to perform the [post-lab teardown](#post-lab-teardown)
+All of your tests should now pass. You're done with the lab! Don't forget to perform the [post-lab teardown](#post-lab-teardown).
 
 ## Resources
 

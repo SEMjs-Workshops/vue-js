@@ -1,15 +1,30 @@
 <template>
   <div>
-    <div v-if="1 !== 1">I should be visible</div>
-    <div v-if="'a' === 'a'">I should not be visible</div>
+    <div>{{ appName }}</div>
+
+    <div>
+      {{ todos.filter((todo) => todo.isComplete).length }} todos completed
+    </div>
+
+    <div>All done!</div>
+    <div>Not done...</div>
   </div>
 </template>
 
 <script>
 export default {
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
+  },
   data() {
     return {
-      isInStock: true,
+      appName: "Todo-aloo",
+      todos: [
+        { isComplete: false, text: "Call mom" },
+        { isComplete: true, text: "Buy groceries" },
+      ],
     };
   },
 };
