@@ -8,9 +8,6 @@
 
     <hr />
 
-    <!-- <input v-on:keyup.enter="alert(1)"/> -->
-    <button v-on:click="createTodo">Create Todo</button>
-
     <ul>
       <li v-for="todo of todos" v-bind:key="todo.id">
         {{ todo.text }}
