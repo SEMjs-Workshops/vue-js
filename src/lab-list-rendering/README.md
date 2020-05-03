@@ -62,11 +62,15 @@ Add another item to `todos`:
 
 And now go back to your browser. You won't see the "Brush teeth" todo since we've only hardcoded two todos in our template. We need to render `N` todos, where `N` is the length of the `todos` array.
 
-Replace the two `<li>` elements with a single `<li>` element that has the `v-for` attribute.
+📝 **Your task:** Use the `v-for` directive to render the list of todos. Completion of this task will make all of this section's tests pass.
 
-If you didn't add the `v-bind:key` directive, you'll get a `vue/require-v-for-key` error. What do you think you should set `v-bind:key` to? Hint: it's something that's unique for each todo.
+Replace the two `<li>` elements with a single `<li>` element that has the `v-for` attribute. Since we want render each `todo` in the `todos` array, you'll want to use `v-for="todo of todos"`.
 
-After that change, this section's tests should pass.
+Inside the `<li>` element, you can use the `todo` variable. The `todo` variable will be the current todo object in the loop. That means you can get the todo text using `todo.text`.
+
+If you didn't add the `v-bind:key` directive, you'll get a `vue/require-v-for-key` error. We need to use something unique for the key, so `todo.id` works perfectly.
+
+This is the end of the lab, but there are two more optional sections.
 
 ### Just for Fun
 
@@ -91,6 +95,22 @@ document.getElementById("app").__vue__.$children[0].todos.push({
 You should see "Go to Mars" show up in your todo list.
 
 Don't forget to perform the [post-lab teardown](#post-lab-teardown).
+
+### Why Is `index` a Bad Key?
+
+If you want the `index` for each iteration of the loop, you can get it like this:
+
+```hbs
+<div v-for="(color, index) of colors" v-bind:key="color">
+  {{ color }} at index {{ index }}
+</div>
+```
+
+So you might be wondering: why can't I just use `index` for my key? In most cases, that'll work fine. But using `index` as your key can lead to some sneaky bugs.
+
+An example of a bug is when the order of your array changes. If you use `index` as your key, then the first item will always have the key `0`. So what happens if you move the first item to index `1`? Vue won't know it's the same item. Here's a working example of the bug:
+
+https://jsbin.com/wohima/edit?js,output
 
 ## Resources
 

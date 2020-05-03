@@ -9,9 +9,8 @@
     <hr />
 
     <ul>
-      <li v-for="todo of todos" v-bind:key="todo.id">
-        {{ todo.text }}
-      </li>
+      <li>{{ todos[0].text }}</li>
+      <li>{{ todos[1].text }}</li>
     </ul>
   </div>
 </template>
@@ -28,8 +27,9 @@ export default {
     return {
       appName: "Todo-aloo",
       todos: [
-        { id: 1, isComplete: false, text: "Call mom" },
-        { id: 2, isComplete: true, text: "Buy groceries" },
+        { id: "a1", isComplete: false, text: "Call mom" },
+        { id: "a2", isComplete: true, text: "Buy groceries" },
+        { id: "a3", isComplete: true, text: "foo" },
       ],
     };
   },
