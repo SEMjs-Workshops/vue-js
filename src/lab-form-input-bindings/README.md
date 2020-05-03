@@ -46,19 +46,21 @@ When the user enters text into the input, we want to display that same text belo
 
 ### The `v-model` Directive
 
-The "Create Todo" button still creates todos with dummy "Do foo" text. Instead of using the dummy text, let's allow our users to specify the todo text in the `<input>` element. How would you update the app to accomplish this?
+The "Create Todo" button still creates todos with dummy "Do foo" text. Instead of using the dummy text, let's allow our users to specify the todo text in the `<input>` element.
 
-We'll add a two-way data binding to the `<input>`, using the `v-model` directive. Two-way data binding connects a model and a view. We already have the view (the `<input>` element), so let's create the model. Add `todoText: ""` to your data object. Now that we have the model and view, just add `v-model="todoText"` tp the `<input>` element.
+**Your task:** Update `App.vue` so that users can specify text for created todos. Completion of this task will make all of this section's tests will pass.
 
-Now that the two-way data binding is working, we just need to replace `"Do foo"` with `this.todoText` in the `createTodo` method.
+We'll add a two-way data binding to the `<input>`, using the `v-model` directive. Two-way data binding connects a model and a view. We already have the view (the `<input>` element), so let's create the model. Add `todoText: ""` to your data object. Now that we have the model and view, just add `v-model="todoText"` to the `<input>` element.
 
-Give it a try in your browser! Enter text into the input, click the button, and see your text appear in the todo list. This section's tests should be passing.
+The two-way data binding is working, so we just need to replace `"Do foo"` with `this.todoText` in the `createTodo` method.
 
-Don't forget to perform the [post-lab teardown](#post-lab-teardown).
+Give it a try in your browser! Enter text into the input, click the button, and see your text appear in the todo list.
 
 ### Updating Todo `isComplete`
 
-Next, like add a feature that allows users to mark todos as complete. Our project manager wants a checkbox next to each todo, and clicking a todo's checkbox toggles its `isComplete` attribute.
+Next, let's add a feature that allows users to mark todos as complete. Our product manager wants a checkbox next to each todo, and clicking a todo's checkbox toggles its `isComplete` attribute.
+
+**Your task:** Add a checkbox next to each todo. Toggling a todo's checkbox will toggle its `isComplete` attribute, which will in turn update the "N todos completed" message. Completion of this task will make all of this section's tests will pass.
 
 Start by adding the checkbox like this:
 
@@ -66,7 +68,7 @@ Start by adding the checkbox like this:
 <input type="checkbox" data-test-id="todo-checkbox" />
 ```
 
-If you click a checkbox, the "X todos completed" message doesn't change. This is because we haven't added two-way data binding yet. Once you add two-way data binding for the `isComplete` attribute, you'll see the "X todos completed" message update and this section's tests will pass.
+If you click a checkbox, the "N todos completed" message doesn't change. This is because we haven't added two-way data binding yet. Once you add two-way data binding for the `isComplete` attribute, you'll see the "N todos completed" message update.
 
 Don't forget to perform the [post-lab teardown](#post-lab-teardown).
 
