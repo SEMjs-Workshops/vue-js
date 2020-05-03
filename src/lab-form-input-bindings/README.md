@@ -3,9 +3,9 @@
 ## Pre-Lab Setup
 
 1. Start the UI.
-   - Run `npm run serve src/lab-event-handling/main.js`
+   - Run `npm run serve src/lab-form-input-bindings/main.js`
 2. In a new terminal, start the test runner.
-   - Run `npm test lab-event-handling`
+   - Run `npm test lab-form-input-bindings`
    - You'll see test failures, which is expected. All of the tests will be passing after you complete this lab.
 
 ## Post-Lab Teardown
@@ -53,6 +53,20 @@ We'll add a two-way data binding to the `<input>`, using the `v-model` directive
 Now that the two-way data binding is working, we just need to replace `"Do foo"` with `this.todoText` in the `createTodo` method.
 
 Give it a try in your browser! Enter text into the input, click the button, and see your text appear in the todo list. This section's tests should be passing.
+
+Don't forget to perform the [post-lab teardown](#post-lab-teardown).
+
+### Updating Todo `isComplete`
+
+Next, like add a feature that allows users to mark todos as complete. Our project manager wants a checkbox next to each todo, and clicking a todo's checkbox toggles its `isComplete` attribute.
+
+Start by adding the checkbox like this:
+
+```hbs
+<input type="checkbox" data-test-id="todo-checkbox" />
+```
+
+If you click a checkbox, the "X todos completed" message doesn't change. This is because we haven't added two-way data binding yet. Once you add two-way data binding for the `isComplete` attribute, you'll see the "X todos completed" message update and this section's tests will pass.
 
 Don't forget to perform the [post-lab teardown](#post-lab-teardown).
 
