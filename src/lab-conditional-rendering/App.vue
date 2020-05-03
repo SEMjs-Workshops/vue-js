@@ -6,8 +6,8 @@
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
     </div>
 
-    <div v-if="completedTodosCount === todos.length">All done!</div>
-    <div v-else>Not done...</div>
+    <div>All done!</div>
+    <div>Not done...</div>
   </div>
 </template>
 
