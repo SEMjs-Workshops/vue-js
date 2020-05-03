@@ -8,6 +8,8 @@
 
     <hr />
 
+    <button>Create Todo</button>
+
     <ul>
       <li v-for="todo of todos" v-bind:key="todo.id">
         {{ todo.text }}
@@ -35,13 +37,7 @@ export default {
   },
   methods: {
     createTodo: function() {
-      const todo = {
-        id: this.todos.length + 1,
-        isComplete: false,
-        text: "Do foo",
-      };
-
-      this.todos.push(todo);
+      alert("Hi!");
     },
   },
 };

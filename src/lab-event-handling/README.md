@@ -14,41 +14,33 @@
 
 ## Intro
 
+Your apps will frequently need to react to events. For example, you may want to run a JavaScript function when a user clicks a button. The `v-on` directive lets us do that.
+
+```hbs
+<button v-on:click="doStuff">Click Me</button>
+```
+
+In the above example, Vue will run the `doStuff` method when the user clicks on the button. The called method is an "event handler".
+
+> An event handler is a JavaScript method that's called when an event occurs.
+
 ## Instructions
 
 ### The `v-on` Directive
 
-In this section, our goal is to create a "Create Todo" button. When this button is clicked, a new todo is added.
+The app now has a button and a `createTodo` method. However, the button isn't wired up, so it doesn't do anything.
 
-We want to run some logic when the button is clicked, so we'll need to handle the `click` event. Add the following code to your template, above the `<ul>` element.
+📝 **Your task:** Edit the app so that clicking the button causes an alert to appear. Completion of this task will make all of this section's tests pass.
 
-```hbs
-<button v-on:click="createTodo">Create Todo</button>
-```
-
-You can see we're using the `v-on` directive with the `click` event. This means we want to handle the `click` event when it occurs "on" the button. But what is `createTodo`? That's our "event handler".
-
-> An event handler is a JavaScript method that's called when an event occurs.
-
-So in summary, every time the button is clicked, the `createTodo` method will be called.
-
-Now we need to make the `createTodo` method. Add this to your component's `methods` object:
-
-```js
-createTodo: function() {
-  alert("Hi");
-},
-```
-
-Try clicking the button. You should see the alert message.
-
-This section's tests should now be passing.
+The `createTodo` method is already coded for us, so we just need to add it to the button. Add the `v-on:click="createTodo"` attribute to the button. Click the button and an alert should appear.
 
 ### Create Todos
 
-Now that we've seen how to call a method when an event occurs, let's change `createTodo` to actually add a new todo. The test for this section is expecting a todo with the text `"Do foo"` to be added when the button is clicked. Change `createTodo` to make this test pass.
+Now that we've seen how to call a method when an event occurs, let's change the `createTodo` so that it does something more useful.
 
-The new logic will be:
+📝 **Your task:** Update the new `createTodo` method so that it adds a new todo to `todos`. The new todo should have the dummy text `"Do foo"`. The `createTodo` method should be called when the button is clicked. Completion of this task will make all of this section's tests pass.
+
+Update the `createTodo` method should so that it performs the following logic:
 
 ```js
 const todo = {
@@ -61,6 +53,8 @@ this.todos.push(todo);
 ```
 
 Note that `todo.id` is calculated. Since we're using `todo.id` for `v-bind:key`, it needs to be unique for each todo.
+
+Next, add the `createTodo` as the `click` event handler on the button. Now if you click the button, you should see a "Do foo" todo appear in the list.
 
 Don't forget to perform the [post-lab teardown](#post-lab-teardown).
 
