@@ -34,7 +34,7 @@ Next, open `App.vue`. You'll see `<div>{{ appName }}</div>` in the template, and
 
 If you look at your test runner, you'll see a failing test for this section. The `renders app name correctly` test is expecting "Todo-aloo" (the real app name) to appear on the page.
 
-📝 **Your task:** Make "Todo-aloo" appear on the page by changing the `appName` data. Completion of this task will make all of this section's tests will pass.
+📝 **Your task:** Make "Todo-aloo" appear on the page by changing the `appName` data. Completion of this task will make all of this section's tests pass.
 
 ### JavaScript Expressions
 
@@ -46,7 +46,7 @@ In the previous section, we interpolated a string. But Vue supports full JavaScr
 <div>{{ todos.filter((todo) => todo.isComplete).length }}</div>
 ```
 
-📝 **Your task:** Make the page say "N todos completed", where N is dynamically calculated using a JavaScript expression. Completion of this task will make all of this section's tests will pass.
+📝 **Your task:** Make the page say "N todos completed", where N is dynamically calculated using a JavaScript expression. Completion of this task will make all of this section's tests pass.
 
 Add the following element to your template:
 
@@ -103,7 +103,7 @@ In your template, you can use `completedTodosCount` as if it's a normal variable
 
 > Computed properties must be functions because they need to dynamically compute a value. Component data could be updated at any time, so computed properties need to consume component data each time they're used.
 
-📝 **Your task:** For the "N todos completed" message, use the `completedTodosCount` computed property instead of the hardcoded JavaScript expression. Completion of this task will make all of this section's tests will pass.
+📝 **Your task:** For the "N todos completed" message, use the `completedTodosCount` computed property instead of the hardcoded JavaScript expression. Completion of this task will make all of this section's tests pass.
 
 Let's use the computed value in the template: change `{{ todos.filter((todo) => todo.isComplete).length }}` to `{{ completedTodosCount }}`. The `completedTodosCount` calculated property is currently returning a hardcoded `0`. Instead we'll need to calculate the real value.
 
