@@ -1,4 +1,4 @@
-# Event Handling Lab
+# Form Input Bindings Lab
 
 ## Pre-Lab Setup
 
