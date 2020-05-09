@@ -9,14 +9,15 @@
     <hr />
 
     <div>
-      <input data-testid="todo-creator-input" v-model="todoText" />
-      <button v-on:click="createTodo" data-testid="todo-creator-button">Create Todo</button>
+      <input data-testid="todo-creator-input" />
+      <button v-on:click="createTodo">
+        Create Todo
+      </button>
     </div>
 
     <ul>
       <li v-for="todo of todos" v-bind:key="todo.id">
         {{ todo.text }}
-        <input type="checkbox" data-testid="todo-checkbox" v-model="todo.isComplete"/>
       </li>
     </ul>
   </div>
@@ -45,7 +46,7 @@ export default {
       const todo = {
         id: this.todos.length + 1,
         isComplete: false,
-        text: this.todoText,
+        text: "Do foo",
       };
 
       this.todos.push(todo);

@@ -5,12 +5,12 @@ import Component from "./App.vue";
 
 describe("The `v-model` Directive", () => {
   test("todo creation flow works", async () => {
-    const { getByTestId, findByText } = render(Component);
+    const { getByTestId, getByText, findByText } = render(Component);
     const input = getByTestId("todo-creator-input");
 
     await fireEvent.update(input, "Do some stuff");
 
-    const button = getByTestId("todo-creator-button");
+    const button = getByText("Create Todo");
 
     await fireEvent.click(button);
     await findByText("Do some stuff");
