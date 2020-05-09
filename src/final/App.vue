@@ -3,8 +3,8 @@
     <div class="app-wrapper">
       <h1>Todo-aloo</h1>
 
-      <div v-if="!isLoading && error !== null" class="app-error">
-        Could not fetch data
+      <div v-if="error !== null" class="app-error">
+        {{ error }}
       </div>
 
       <div v-if="error === null">
@@ -14,7 +14,7 @@
           {{ completedTodoCount }} / {{ todos.length }} todos compeleted
         </div>
 
-        <TodoList v-bind:todos="todos" v-on:update-todo="updateTodo" />
+        <TodoList v-bind:todos="todos" v-bind:updateTodo="updateTodo" />
       </div>
     </div>
   </v-app>
@@ -39,7 +39,6 @@ export default {
   data() {
     return {
       error: null,
-      isLoading: false,
       todos: [],
     };
   },
@@ -49,19 +48,17 @@ export default {
     },
   },
   methods: {
-    createTodo(todo) {
+    createTodo: function(todo) {
       /*
       This method will be called when the `TodoCreator` component creates a new
       todo.
       */
 
-      axios.post("http://localhost:3000/todos", todo).then(() => {
-        this.fetchData();
+      axios.post("http://localhost:3000/todos", todo).then(({ data }) => {
+        this.todos.push(data);
       });
     },
-    fetchData() {
-      this.isLoading = true;
-
+    fetchData: async function() {
       axios
         .get("http://localhost:3000/todos")
         .then(({ data }) => {
@@ -70,22 +67,10 @@ export default {
         })
         .catch((err) => {
           this.error = err.toString();
-        })
-        .finally(() => {
-          this.isLoading = false;
         });
     },
-    updateTodo(todo) {
-      /*
-      This method will be called when the `Todo` component updates a todo. The
-      event will go thru the `TodoList` component. In other words, the event
-      flow is `Todo` -> `TodoList` -> `updateTodo`.
-      */
-
-      console.log(todo);
-      axios.patch(`http://localhost:3000/todos/${todo.id}`, todo).then(() => {
-        this.fetchData();
-      });
+    updateTodo: function(todo) {
+      axios.patch(`http://localhost:3000/todos/${todo.id}`, todo);
     },
   },
 };

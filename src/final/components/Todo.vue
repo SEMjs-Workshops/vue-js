@@ -10,7 +10,7 @@
     <v-list-item-action>
       <v-checkbox
         v-model="todo.isComplete"
-        v-on:change="updateTodo"
+        v-on:change="updateTodo(todo)"
         data-testid="is-complete"
       ></v-checkbox>
     </v-list-item-action>
@@ -19,13 +19,7 @@
 
 <script>
 export default {
-  name: "Todo",
-  props: ["todo"],
-  methods: {
-    updateTodo() {
-      this.$emit("update-todo", this.todo);
-    },
-  },
+  props: ["todo", "updateTodo"],
 };
 </script>
 

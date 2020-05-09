@@ -6,7 +6,7 @@
       <Todo
         v-bind:todo="todo"
         v-bind:key="todo.id"
-        v-on:update-todo="updateTodo"
+        v-bind:updateTodo="updateTodo"
       />
 
       <v-divider v-bind:key="'div-' + index.toString()"></v-divider>
@@ -18,15 +18,9 @@
 import Todo from "./Todo.vue";
 
 export default {
-  name: "TodoList",
-  props: ["todos"],
+  props: ["todos", "updateTodo"],
   components: {
     Todo
   },
-  methods: {
-    updateTodo(todo) {
-      this.$emit("update-todo", todo);
-    }
-  }
 };
 </script>
