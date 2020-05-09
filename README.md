@@ -24,10 +24,9 @@ Perform the [Initial Setup](#initial-setup) section, followed by [Labs](#labs). 
 3. [List rendering](src/lab-list-rendering/README.md)
 4. [Event handling](src/lab-event-handling/README.md)
 5. [Form input binding](src/lab-form-input-bindings/README.md)
-6. Attribute binding
-7. Class binding
-8. Components
-9. [Backend API](src/lab-backend-api/README.md)
+6. [Multiple components](src/lab-multiple-components/README.md)
+7. Vuetify
+8. [Backend API](src/lab-backend-api/README.md)
 
 ## Repo Structure
 
