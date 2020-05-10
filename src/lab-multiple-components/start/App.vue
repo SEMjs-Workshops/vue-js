@@ -2,9 +2,9 @@
   <div id="app">
     <h1>{{ appName }}</h1>
 
-    <h2>
+    <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
-    </h2>
+    </div>
 
     <hr />
 
@@ -15,7 +15,8 @@
 
     <ul>
       <li v-for="todo of todos" v-bind:key="todo.id">
-        {{ todo.text }}
+        <span>{{ todo.text }}</span>
+
         <input
           type="checkbox"
           data-testid="todo-checkbox"
@@ -28,12 +29,6 @@
 
 <script>
 export default {
-  name: "App",
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
-  },
   data() {
     return {
       appName: "Todo-aloo",
@@ -43,6 +38,11 @@ export default {
         { id: 2, isComplete: true, text: "Buy groceries" },
       ],
     };
+  },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
   },
   methods: {
     createTodo: function() {

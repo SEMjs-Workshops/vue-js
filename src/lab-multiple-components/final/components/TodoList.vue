@@ -1,7 +1,7 @@
 <template>
   <ul>
     <li v-for="todo of todos" v-bind:key="todo.id">
-      {{ todo.text }}
+      <span>{{ todo.text }}</span>
 
       <input
         type="checkbox"

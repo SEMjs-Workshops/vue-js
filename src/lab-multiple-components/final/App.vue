@@ -2,9 +2,9 @@
   <div id="app">
     <h1>{{ appName }}</h1>
 
-    <h2>
+    <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
-    </h2>
+    </div>
 
     <hr />
 
@@ -22,11 +22,6 @@ export default {
     TodoCreator,
     TodoList,
   },
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
-  },
   data() {
     return {
       appName: "Todo-aloo",
@@ -36,6 +31,23 @@ export default {
         { id: 2, isComplete: true, text: "Buy groceries" },
       ],
     };
+  },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
+  },
+  methods: {
+    createTodo: function() {
+      const todo = {
+        id: this.todos.length + 1,
+        isComplete: false,
+        text: this.todoText,
+      };
+
+      this.todos.push(todo);
+      this.todoText = "";
+    },
   },
 };
 </script>
