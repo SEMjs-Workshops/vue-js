@@ -17,12 +17,6 @@
 
 <script>
 export default {
-  name: "App",
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
-  },
   data() {
     return {
       appName: "Todo-aloo",
@@ -32,6 +26,11 @@ export default {
         { id: "a3", isComplete: true, text: "foo" },
       ],
     };
+  },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
   },
 };
 </script>
