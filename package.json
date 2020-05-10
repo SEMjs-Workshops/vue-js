@@ -2,12 +2,10 @@
   "name": "vue-workshop",
   "version": "0.1.0",
   "scripts": {
-    "build": "vue-cli-service build",
-    "lint": "vue-cli-service lint",
-    "serve": "vue-cli-service serve",
+    "serve": "sh scripts/serve.sh",
     "serve:final": "concurrently --raw \"npm run start:server\" \"npm run serve src/final/main.js\"",
     "start:server": "json-server db.js",
-    "test": "jest --watch"
+    "test": "sh scripts/test.sh"
   },
   "dependencies": {
     "axios": "^0.19.2",

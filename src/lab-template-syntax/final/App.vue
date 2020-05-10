@@ -1,6 +1,7 @@
 <template>
   <div>
-    <div>{{ appName }}</div>
+    <h1>{{ appName }}</h1>
+    <div>{{ completedTodosCount }} todos completed</div>
   </div>
 </template>
 
@@ -8,12 +9,17 @@
 export default {
   data() {
     return {
-      appName: "app name here",
+      appName: "Todo-aloo",
       todos: [
         { isComplete: false, text: "Call mom" },
         { isComplete: true, text: "Buy groceries" },
       ],
     };
+  },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
   },
 };
 </script>
