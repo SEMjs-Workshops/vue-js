@@ -3,9 +3,9 @@
 ## Pre-Lab Setup
 
 1. Start the UI.
-   - Run `npm run serve src/lab-form-input-bindings/main.js`
+   - Run `npm run serve lab-form-input-bindings`
 2. In a new terminal, start the test runner.
-   - Run `npm test lab-form-input-bindings`
+   - Run `npm run test lab-form-input-bindings`
    - You'll see test failures, which is expected. All of the tests will be passing after you complete this lab.
 
 ## Post-Lab Teardown
@@ -65,7 +65,7 @@ Next, let's add a feature that allows users to mark todos as complete. Our produ
 Start by adding the checkbox like this:
 
 ```hbs
-<input type="checkbox" data-test-id="todo-checkbox" />
+<input type="checkbox" data-testid="todo-checkbox" />
 ```
 
 If you click a checkbox, the "N todos completed" message doesn't change. This is because we haven't added two-way data binding yet. Once you add two-way data binding for the `isComplete` attribute, you'll see the "N todos completed" message update.
