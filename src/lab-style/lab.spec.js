@@ -1,23 +1,41 @@
 import { render } from "@testing-library/vue";
 import * as fs from "fs";
-// import cloneDeep from "lodash/cloneDeep";
+import cloneDeep from "lodash/cloneDeep";
 import * as path from "path";
 
+import App from "./App.vue";
+import TodoCreator from "./components/TodoCreator.vue";
 import TodoList from "./components/TodoList.vue";
 
 describe("App Component", () => {
-  test("CSS classes are correct", () => {
-    const content = fs.readFileSync(path.join(__dirname, "App.vue"), "utf-8");
+  test("CSS class is correct", () => {
+    const LocalComponent = cloneDeep(App);
+    const data = LocalComponent.data();
 
-    expect(content).toContain('class="app-wrapper"');
-    expect(content).toContain('class="app-statistics"');
+    LocalComponent.data = function() {
+      return {
+        ...data,
+        todos: [
+          { id: 1, isComplete: false, text: "foo" },
+          { id: 2, isComplete: true, text: "bar" },
+        ],
+      };
+    };
+
+    const { getByText } = render(LocalComponent);
+
+    expect(getByText("1 todos completed").className).toContain(
+      "app-statistics"
+    );
   });
 
   test("CSS import is correct", () => {
-    const content = fs.readFileSync(path.join(__dirname, "App.vue"), "utf-8");
+    const content = fs.readFileSync(
+      path.join(__dirname, "App.vue"),
+      "utf-8"
+    );
 
-    expect(content).toContain("<style scoped>");
-    expect(content).toContain('@import "../static/App.css"');
+    expect(content).toContain('src="../static/App.css"');
   });
 });
 
@@ -29,8 +47,6 @@ describe("TodoCreator Component", () => {
     );
 
     expect(content).toContain('class="todo-creator-wrapper"');
-    expect(content).toContain("<style scoped>");
-    expect(content).toContain('@import "../../static/TodoCreator.css"');
   });
 
   test("CSS import is correct", () => {
@@ -39,9 +55,7 @@ describe("TodoCreator Component", () => {
       "utf-8"
     );
 
-    expect(content).toContain('class="todo-creator-wrapper"');
-    expect(content).toContain("<style scoped>");
-    expect(content).toContain('@import "../../static/TodoCreator.css"');
+    expect(content).toContain('src="../../static/TodoCreator.css"');
   });
 });
 
@@ -52,8 +66,7 @@ describe("TodoList Component", () => {
       "utf-8"
     );
 
-    expect(content).toContain("<style scoped>");
-    expect(content).toContain('@import "../../static/Todo.css"');
+    expect(content).toContain('src="../../static/TodoList.css"');
   });
 
   test("completed todos have line-through class", () => {

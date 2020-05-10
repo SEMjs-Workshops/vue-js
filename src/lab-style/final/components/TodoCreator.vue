@@ -1,7 +1,11 @@
 <template>
   <div class="todo-creator-wrapper">
-    <input type="text" data-testid="todo-creator-input" v-model="todoText" />
-    <button v-on:click="createTodo">Create Todo</button>
+    <input
+      type="text"
+      data-testid="todo-creator-input"
+      v-model="todoText"
+      @keypress.enter="createTodo"
+    />
   </div>
 </template>
 
@@ -22,11 +26,10 @@ export default {
       };
 
       this.todos.push(todo);
+      this.todoText = "";
     },
   },
 };
 </script>
 
-<style scoped>
-@import "../../static/TodoCreator.css";
-</style>
+<style src="../../static/TodoCreator.css"></style>

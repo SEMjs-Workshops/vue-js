@@ -1,8 +1,8 @@
 <template>
-  <div id="app" class="app-wrapper">
+  <div id="app">
     <h1>{{ appName }}</h1>
 
-    <div class="app-statistics">
+    <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
     </div>
 
@@ -38,7 +38,3 @@ export default {
   },
 };
 </script>
-
-<style scoped>
-@import "../static/App.css";
-</style>

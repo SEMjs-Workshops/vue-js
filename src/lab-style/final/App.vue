@@ -1,5 +1,5 @@
 <template>
-  <div id="app" class="app-wrapper">
+  <div id="app">
     <h1>{{ appName }}</h1>
 
     <div class="app-statistics">
@@ -39,6 +39,4 @@ export default {
 };
 </script>
 
-<style scoped>
-@import "../static/App.css";
-</style>
+<style src="../static/App.css"></style>

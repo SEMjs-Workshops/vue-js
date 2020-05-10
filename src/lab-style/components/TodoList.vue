@@ -1,9 +1,9 @@
 <template>
   <ul>
     <li v-for="todo of todos" v-bind:key="todo.id">
-      <span v-bind:class="{ 'line-through': todo.isComplete }">{{
-        todo.text
-      }}</span>
+      <span>
+        {{ todo.text }}
+      </span>
 
       <input
         type="checkbox"
@@ -19,7 +19,3 @@ export default {
   props: ["todos"],
 };
 </script>
-
-<style scoped>
-@import "../../static/Todo.css";
-</style>
