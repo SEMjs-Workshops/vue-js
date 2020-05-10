@@ -4,7 +4,6 @@ import cloneDeep from "lodash/cloneDeep";
 import * as path from "path";
 
 import App from "./App.vue";
-import TodoCreator from "./components/TodoCreator.vue";
 import TodoList from "./components/TodoList.vue";
 
 describe("App Component", () => {

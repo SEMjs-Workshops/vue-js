@@ -22,11 +22,6 @@ export default {
     TodoCreator,
     TodoList,
   },
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
-  },
   data() {
     return {
       appName: "Todo-aloo",
@@ -36,7 +31,12 @@ export default {
       ],
     };
   },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
+  },
 };
 </script>
 
-<style src="../static/App.css"></style>
+<style src="../../static/App.css"></style>
