@@ -1,23 +1,18 @@
 <template>
   <div>
-    <div>{{ appName }}</div>
+    <h1>{{ appName }}</h1>
 
     <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
     </div>
 
-    <div>All done!</div>
-    <div>Not done...</div>
+    <div v-if="completedTodosCount === todos.length">All done!</div>
+    <div v-else>Not done...</div>
   </div>
 </template>
 
 <script>
 export default {
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
-  },
   data() {
     return {
       appName: "Todo-aloo",
@@ -26,6 +21,11 @@ export default {
         { isComplete: true, text: "Buy groceries" },
       ],
     };
+  },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
   },
 };
 </script>
