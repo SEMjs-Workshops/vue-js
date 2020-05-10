@@ -30,7 +30,6 @@ export default {
   data() {
     return {
       appName: "Todo-aloo",
-      todoText: "",
       todos: [
         { id: 1, isComplete: false, text: "Call mom" },
         { id: 2, isComplete: true, text: "Buy groceries" },

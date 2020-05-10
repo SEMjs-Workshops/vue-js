@@ -5,3 +5,7 @@
 .todo-creator-wrapper {
   display: flex;
 }
+
+.todo-creator-wrapper input {
+  width: 100%;
+}
