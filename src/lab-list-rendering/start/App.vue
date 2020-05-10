@@ -2,9 +2,9 @@
   <div id="app">
     <h1>{{ appName }}</h1>
 
-    <h2>
+    <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
-    </h2>
+    </div>
 
     <hr />
 

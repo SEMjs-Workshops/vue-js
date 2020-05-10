@@ -8,27 +8,36 @@
 
     <hr />
 
+    <button>Create Todo</button>
+
     <ul>
-      <li v-for="todo of todos" v-bind:key="todo.id">{{ todo.text }}</li>
+      <li v-for="todo of todos" v-bind:key="todo.id">
+        {{ todo.text }}
+      </li>
     </ul>
   </div>
 </template>
 
 <script>
 export default {
+  name: "App",
   data() {
     return {
       appName: "Todo-aloo",
       todos: [
-        { id: "a1", isComplete: false, text: "Call mom" },
-        { id: "a2", isComplete: true, text: "Buy groceries" },
-        { id: "a3", isComplete: true, text: "foo" },
+        { id: 1, isComplete: false, text: "Call mom" },
+        { id: 2, isComplete: true, text: "Buy groceries" },
       ],
     };
   },
   computed: {
     completedTodosCount: function() {
       return this.todos.filter((todo) => todo.isComplete).length;
+    },
+  },
+  methods: {
+    createTodo: function() {
+      alert("Hi!");
     },
   },
 };

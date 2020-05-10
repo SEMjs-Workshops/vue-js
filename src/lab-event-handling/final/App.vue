@@ -2,13 +2,13 @@
   <div id="app">
     <h1>{{ appName }}</h1>
 
-    <h2>
+    <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
-    </h2>
+    </div>
 
     <hr />
 
-    <button>Create Todo</button>
+    <button v-on:click="createTodo">Create Todo</button>
 
     <ul>
       <li v-for="todo of todos" v-bind:key="todo.id">
@@ -21,11 +21,6 @@
 <script>
 export default {
   name: "App",
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
-  },
   data() {
     return {
       appName: "Todo-aloo",
@@ -35,9 +30,20 @@ export default {
       ],
     };
   },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
+  },
   methods: {
     createTodo: function() {
-      alert("Hi!");
+      const todo = {
+        id: this.todos.length + 1,
+        isComplete: false,
+        text: "Do foo",
+      };
+
+      this.todos.push(todo);
     },
   },
 };
