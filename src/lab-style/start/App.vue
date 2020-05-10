@@ -2,29 +2,25 @@
   <div id="app">
     <h1>{{ appName }}</h1>
 
-    <h2>
+    <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
-    </h2>
+    </div>
 
     <hr />
 
-    <button>Create Todo</button>
-
-    <ul>
-      <li v-for="todo of todos" v-bind:key="todo.id">
-        {{ todo.text }}
-      </li>
-    </ul>
+    <TodoCreator v-bind:todos="todos" />
+    <TodoList v-bind:todos="todos" />
   </div>
 </template>
 
 <script>
+import TodoCreator from "./components/TodoCreator";
+import TodoList from "./components/TodoList";
+
 export default {
-  name: "App",
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
+  components: {
+    TodoCreator,
+    TodoList,
   },
   data() {
     return {
@@ -35,9 +31,9 @@ export default {
       ],
     };
   },
-  methods: {
-    createTodo: function() {
-      alert("Hi!");
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
     },
   },
 };

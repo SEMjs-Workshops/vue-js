@@ -3,9 +3,9 @@
 ## Pre-Lab Setup
 
 1. Start the UI.
-   - Run `npm run serve src/lab-template-syntax/main.js`
+   - Run `npm run serve lab-template-syntax/start/main.js`
 2. In a new terminal, start the test runner.
-   - Run `npm test lab-template-syntax`
+   - Run `npm run test lab-template-syntax`
    - You'll see test failures, which is expected. All of the tests will be passing after you complete this lab.
 
 ## Post-Lab Teardown
@@ -82,11 +82,6 @@ To add a computed property to our component, we'll need to add a `computed` func
 
 ```js
 export default {
-  computed: {
-    completedTodosCount: function() {
-      return 0;
-    },
-  },
   data() {
     return {
       appName: "Todo-aloo",
@@ -95,6 +90,11 @@ export default {
         { isComplete: true, text: "Buy groceries" },
       ],
     };
+  },
+  computed: {
+    completedTodosCount: function() {
+      return 0;
+    },
   },
 };
 ```

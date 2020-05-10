@@ -20,4 +20,4 @@ export default {
 };
 </script>
 
-<style src="../../static/TodoList.css"></style>
+<style src="../../../static/TodoList.css"></style>

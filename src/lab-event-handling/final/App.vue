@@ -2,18 +2,13 @@
   <div id="app">
     <h1>{{ appName }}</h1>
 
-    <h2>
+    <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
-    </h2>
+    </div>
 
     <hr />
 
-    <div>
-      <input data-testid="todo-creator-input" />
-      <button v-on:click="createTodo">
-        Create Todo
-      </button>
-    </div>
+    <button v-on:click="createTodo">Create Todo</button>
 
     <ul>
       <li v-for="todo of todos" v-bind:key="todo.id">
@@ -26,20 +21,19 @@
 <script>
 export default {
   name: "App",
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
-  },
   data() {
     return {
       appName: "Todo-aloo",
-      todoText: "",
       todos: [
         { id: 1, isComplete: false, text: "Call mom" },
         { id: 2, isComplete: true, text: "Buy groceries" },
       ],
     };
+  },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
   },
   methods: {
     createTodo: function() {

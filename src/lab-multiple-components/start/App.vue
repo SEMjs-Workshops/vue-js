@@ -8,20 +8,27 @@
 
     <hr />
 
-    <TodoCreator v-bind:todos="todos" />
-    <TodoList v-bind:todos="todos" />
+    <div>
+      <input data-testid="todo-creator-input" v-model="todoText" />
+      <button v-on:click="createTodo">Create Todo</button>
+    </div>
+
+    <ul>
+      <li v-for="todo of todos" v-bind:key="todo.id">
+        <span>{{ todo.text }}</span>
+
+        <input
+          type="checkbox"
+          data-testid="todo-checkbox"
+          v-model="todo.isComplete"
+        />
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import TodoCreator from "./components/TodoCreator";
-import TodoList from "./components/TodoList";
-
 export default {
-  components: {
-    TodoCreator,
-    TodoList,
-  },
   data() {
     return {
       appName: "Todo-aloo",

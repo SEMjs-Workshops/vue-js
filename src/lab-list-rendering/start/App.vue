@@ -2,32 +2,28 @@
   <div id="app">
     <h1>{{ appName }}</h1>
 
-    <div class="app-statistics">
+    <div>
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
     </div>
 
     <hr />
 
-    <TodoCreator v-bind:todos="todos" />
-    <TodoList v-bind:todos="todos" />
+    <ul>
+      <li>{{ todos[0].text }}</li>
+      <li>{{ todos[1].text }}</li>
+    </ul>
   </div>
 </template>
 
 <script>
-import TodoCreator from "./components/TodoCreator";
-import TodoList from "./components/TodoList";
-
 export default {
-  components: {
-    TodoCreator,
-    TodoList,
-  },
   data() {
     return {
       appName: "Todo-aloo",
       todos: [
-        { id: 1, isComplete: false, text: "Call mom" },
-        { id: 2, isComplete: true, text: "Buy groceries" },
+        { id: "a1", isComplete: false, text: "Call mom" },
+        { id: "a2", isComplete: true, text: "Buy groceries" },
+        { id: "a3", isComplete: true, text: "foo" },
       ],
     };
   },
@@ -38,5 +34,3 @@ export default {
   },
 };
 </script>
-
-<style src="../../static/App.css"></style>

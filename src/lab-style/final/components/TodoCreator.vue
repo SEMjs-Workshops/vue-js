@@ -32,4 +32,4 @@ export default {
 };
 </script>
 
-<style src="../../static/TodoCreator.css"></style>
+<style src="../../../static/TodoCreator.css"></style>

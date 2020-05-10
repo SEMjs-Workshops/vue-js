@@ -3,9 +3,9 @@
 ## Pre-Lab Setup
 
 1. Start the UI.
-   - Run `npm run serve src/lab-style/main.js`
+   - Run `npm run serve lab-style`
 2. In a new terminal, start the test runner.
-   - Run `npm test lab-style`
+   - Run `npm run test lab-style`
    - You'll see test failures, which is expected. All of the tests will be passing after you complete this lab.
 
 ## Post-Lab Teardown

@@ -8,25 +8,19 @@
 
     <hr />
 
-    <TodoCreator v-bind:todos="todos" />
-    <TodoList v-bind:todos="todos" />
+    <button>Create Todo</button>
+
+    <ul>
+      <li v-for="todo of todos" v-bind:key="todo.id">
+        {{ todo.text }}
+      </li>
+    </ul>
   </div>
 </template>
 
 <script>
-import TodoCreator from "./components/TodoCreator";
-import TodoList from "./components/TodoList";
-
 export default {
-  components: {
-    TodoCreator,
-    TodoList,
-  },
-  computed: {
-    completedTodosCount: function() {
-      return this.todos.filter((todo) => todo.isComplete).length;
-    },
-  },
+  name: "App",
   data() {
     return {
       appName: "Todo-aloo",
@@ -35,6 +29,16 @@ export default {
         { id: 2, isComplete: true, text: "Buy groceries" },
       ],
     };
+  },
+  computed: {
+    completedTodosCount: function() {
+      return this.todos.filter((todo) => todo.isComplete).length;
+    },
+  },
+  methods: {
+    createTodo: function() {
+      alert("Hi!");
+    },
   },
 };
 </script>

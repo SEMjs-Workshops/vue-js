@@ -3,9 +3,9 @@
 ## Pre-Lab Setup
 
 1. Start the UI.
-   - Run `npm run serve src/lab-multiple-components/main.js`
+   - Run `npm run serve lab-multiple-components`
 2. In a new terminal, start the test runner.
-   - Run `npm test lab-multiple-components`
+   - Run `npm run test lab-multiple-components`
    - You'll see test failures, which is expected. All of the tests will be passing after you complete this lab.
 
 ## Post-Lab Teardown
