@@ -1,13 +1,22 @@
 <template>
-  <div>
-    <input type="text" data-testid="todo-creator-input" v-model="todoText" />
-    <button v-on:click="createTodo">Create Todo</button>
+  <div class="todo-creator-wrapper">
+    <input
+      type="text"
+      data-testid="todo-creator-input"
+      v-model="todoText"
+      @keypress.enter="createTodo"
+    />
   </div>
 </template>
 
 <script>
 export default {
   props: ["todos"],
+  data() {
+    return {
+      todoText: "",
+    };
+  },
   methods: {
     createTodo: function() {
       const todo = {
@@ -22,3 +31,5 @@ export default {
   },
 };
 </script>
+
+<style src="../../static/TodoCreator.css"></style>

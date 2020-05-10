@@ -2,9 +2,9 @@
   <div id="app">
     <h1>{{ appName }}</h1>
 
-    <h2>
+    <div class="app-statistics">
       {{ todos.filter((todo) => todo.isComplete).length }} todos completed
-    </h2>
+    </div>
 
     <hr />
 
@@ -30,7 +30,6 @@ export default {
   data() {
     return {
       appName: "Todo-aloo",
-      todoText: "",
       todos: [
         { id: 1, isComplete: false, text: "Call mom" },
         { id: 2, isComplete: true, text: "Buy groceries" },
@@ -39,3 +38,5 @@ export default {
   },
 };
 </script>
+
+<style src="../static/App.css"></style>

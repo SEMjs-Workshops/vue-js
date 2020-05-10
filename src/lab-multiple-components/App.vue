@@ -53,6 +53,7 @@ export default {
       };
 
       this.todos.push(todo);
+      this.todoText = "";
     },
   },
 };
