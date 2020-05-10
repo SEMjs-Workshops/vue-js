@@ -69,10 +69,10 @@ Files/folders in the repo root:
   - Sections:
     - `scripts`
       - When you run `npm run`, you're actually running a command in the `scripts` section.
-        - For example, running `npm run test` runs `scripts.test`.
+        - For example, running `npm run start:server` runs `scripts."start:server"`.
       - Scripts are arbitrary. If you add `"foo": "echo bar"`, then running `npm run foo` will print `bar` in your terminal.
-      - You might ask "where is `npm` getting the commands within scripts, like `vue-cli-service` or `jest`?" They can be found in `node_modules/.bin`.
-        - For example, the script `"jest --watch"` is actually running `node_modules/.bin/jest --watch`.
+      - You might ask "where is `npm` getting the commands within scripts, like `json-server`?" They can be found in `node_modules/.bin`.
+        - For example, the script `"json-server db.js"` is actually running `node_modules/.bin/json-server db.js`.
     - `dependencies`
       - Third-party dependencies used in production (and usually also during development).
       - When you deploy a JavaScript app, you should only install `dependencies`.
