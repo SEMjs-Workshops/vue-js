@@ -10,9 +10,7 @@
 
     <div>
       <input data-testid="todo-creator-input" v-model="todoText" />
-      <button v-on:click="createTodo">
-        Create Todo
-      </button>
+      <button v-on:click="createTodo">Create Todo</button>
     </div>
 
     <ul>
