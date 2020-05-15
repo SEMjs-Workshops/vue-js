@@ -77,5 +77,5 @@ export default {
 </script>
 
 <style>
-@import "../static/App.css";
+@import "../../static/App.css";
 </style>
