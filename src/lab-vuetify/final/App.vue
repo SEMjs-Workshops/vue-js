@@ -1,14 +1,16 @@
 <template>
-  <div id="app">
-    <h1>{{ appName }}</h1>
+  <v-app>
+    <div id="app">
+      <h1>{{ appName }}</h1>
 
-    <div class="app-statistics">
-      {{ todos.filter((todo) => todo.isComplete).length }} todos completed
+      <div class="app-statistics">
+        {{ todos.filter((todo) => todo.isComplete).length }} todos completed
+      </div>
+
+      <TodoCreator v-bind:todos="todos" />
+      <TodoList v-bind:todos="todos" />
     </div>
-
-    <TodoCreator v-bind:todos="todos" />
-    <TodoList v-bind:todos="todos" />
-  </div>
+  </v-app>
 </template>
 
 <script>

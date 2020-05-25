@@ -1,9 +1,11 @@
 <template>
   <div class="todo-creator-wrapper">
-    <input
-      type="text"
+    <v-text-field
       v-model="todoText"
       @keypress.enter="createTodo"
+      outlined
+      label="New Task"
+      dense
     />
   </div>
 </template>

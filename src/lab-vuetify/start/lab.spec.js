@@ -1,84 +1,66 @@
-// import { render } from "@testing-library/vue";
-// import * as fs from "fs";
-// import cloneDeep from "lodash/cloneDeep";
-// import * as path from "path";
+import * as babelParser from "@babel/parser";
+import { render } from "@testing-library/vue";
+import * as fs from "fs";
+import get from "lodash/get";
+import * as path from "path";
 
-// import App from "./App.vue";
-// import TodoList from "./components/TodoList.vue";
+import App from "./App.vue";
+import vuetify from "./plugins/vuetify";
 
-// describe("App Component", () => {
-//   test("CSS class is correct", () => {
-//     const LocalComponent = cloneDeep(App);
-//     const data = LocalComponent.data();
+describe("Hook Up Vuetify", () => {
+  test("Vue is instantiated with Vuetify", () => {
+    function getMainModule() {
+      const mainPath = path.join(__dirname, "main.js");
+      const code = fs.readFileSync(mainPath, "utf-8");
 
-//     LocalComponent.data = function() {
-//       return {
-//         ...data,
-//         todos: [
-//           { id: 1, isComplete: false, text: "foo" },
-//           { id: 2, isComplete: true, text: "bar" },
-//         ],
-//       };
-//     };
+      return babelParser.parse(code, { sourceType: "module" });
+    }
 
-//     const { getByText } = render(LocalComponent);
+    function checkVuetifyInVueOptions() {
+      function getVuetifyImport(module) {
+        return module.program.body.find((node) => {
+          if (node.type !== "ImportDeclaration") {
+            return false;
+          }
 
-//     expect(getByText("1 todos completed").className).toContain(
-//       "app-statistics"
-//     );
-//   });
+          const importPath = get(node, "source.value", "");
 
-//   test("CSS import is correct", () => {
-//     const content = fs.readFileSync(
-//       path.join(__dirname, "App.vue"),
-//       "utf-8"
-//     );
+          return (
+            importPath === "./plugins/vuetify" ||
+            importPath === "./plugins/vuetify.js"
+          );
+        });
+      }
 
-//     expect(content).toContain('src="../static/App.css"');
-//   });
-// });
+      function getVueInstantiation(module) {
+        return module.program.body.find((node) => {
+          const calleeName = get(node, "expression.callee.object.callee.name");
+          return calleeName === "Vue";
+        });
+      }
 
-// describe("TodoCreator Component", () => {
-//   test("CSS classes are correct", () => {
-//     const content = fs.readFileSync(
-//       path.join(__dirname, "components/TodoCreator.vue"),
-//       "utf-8"
-//     );
+      const module = getMainModule();
 
-//     expect(content).toContain('class="todo-creator-wrapper"');
-//   });
+      if (!getVuetifyImport(module)) {
+        return false;
+      }
 
-//   test("CSS import is correct", () => {
-//     const content = fs.readFileSync(
-//       path.join(__dirname, "components/TodoCreator.vue"),
-//       "utf-8"
-//     );
+      const node = getVueInstantiation(module);
+      const { properties } = node.expression.callee.object.arguments[0];
 
-//     expect(content).toContain('src="../../static/TodoCreator.css"');
-//   });
-// });
+      return properties.some((node) => {
+        return node.key.name === "vuetify" && node.value.name === "vuetify";
+      });
+    }
 
-// describe("TodoList Component", () => {
-//   test("CSS import is correct", () => {
-//     const content = fs.readFileSync(
-//       path.join(__dirname, "components/TodoList.vue"),
-//       "utf-8"
-//     );
+    expect(checkVuetifyInVueOptions()).toBe(true);
+  });
+});
 
-//     expect(content).toContain('src="../../static/TodoList.css"');
-//   });
+describe("The `v-app` Wrapper Component", () => {
+  test("<v-app> is the root element", () => {
+    const { container } = render(App, { vuetify });
 
-//   test("completed todos have line-through class", () => {
-//     const { getByText } = render(TodoList, {
-//       props: {
-//         todos: [
-//           { id: 1, text: "foo", isComplete: true },
-//           { id: 2, text: "bar", isComplete: false },
-//         ],
-//       },
-//     });
-
-//     expect(getByText("foo").className).toContain("line-through");
-//     expect(getByText("bar").className).not.toContain("line-through");
-//   });
-// });
+    expect(container.firstChild.className).toContain("v-application");
+  });
+});
