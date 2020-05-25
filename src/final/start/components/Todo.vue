@@ -24,5 +24,5 @@ export default {
 </script>
 
 <style scoped>
-@import "../../static/Todo.css";
+@import "../../../static/Todo.css";
 </style>

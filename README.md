@@ -26,7 +26,7 @@ Perform the [Initial Setup](#initial-setup) section, followed by [Labs](#labs). 
 5. [Form input binding](src/lab-form-input-bindings/README.md)
 6. [Multiple components](src/lab-multiple-components/README.md)
 7. [Style](src/lab-style/README.md)
-8. Vuetify
+8. [Vuetify](src/lab-vuetify/README.md)
 9. [Backend API](src/lab-backend-api/README.md)
 
 ## Repo Structure
